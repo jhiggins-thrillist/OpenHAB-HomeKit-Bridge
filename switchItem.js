@@ -2,7 +2,7 @@
 var types = require("HAP-NodeJS").types;
 var exports = module.exports = {};
 
-var execute = function(accessory,characteristic,value){
+var execute = function (accessory,characteristic,value) {
   console.log("executed accessory: " + accessory + ", and characteristic: " + characteristic + ", with value: " +  value + ".");
 }
 

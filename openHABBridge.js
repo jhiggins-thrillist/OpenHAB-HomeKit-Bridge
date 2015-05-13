@@ -26,10 +26,10 @@ storage.initSync();
 
 var bridgeController = new bridge_Factor.BridgedAccessoryController();
 var targetPort = 52826;
-var bridgeName = "OpenHAB HomeKit Bridge";
+var bridgeName = "Joe's HomeKit Bridge";
 var pincode = ops['pincode'] ? ops['pincode'] :"031-45-154";
 var serverAddress = ops['server'] ? ops['server'] : "127.0.0.1:8080";
-var sitemapName = ops['sitemap'] ? ops['sitemap'] : "homekit";
+var sitemapName = ops['sitemap'] ? ops['sitemap'] : "default";
 
 registerOpenHABAccessories();
 
@@ -43,6 +43,7 @@ function registerOpenHABAccessories() {
 
 // iterate all items and create HAP compatible objects
 function publishOpenHABBridgeAccessory(openHABWidgets) {
+
   for (var i = 0; i < openHABWidgets.length; i++) {
     var openHABWidget = openHABWidgets[i];
     var switchItemTemplate = JSON.parse(JSON.stringify(switchItem));
@@ -61,7 +62,7 @@ function publishOpenHABBridgeAccessory(openHABWidgets) {
 }
 
 function getService(accessory, type) {
-  return accessory.services.filter( function(value) {
+  return accessory.services.filter(function (value) {
     return value.sType === type;
   })[0];
 }
@@ -124,7 +125,7 @@ function publishAccessory(template, openHABSwitchWidget) {
   for (var j = 0; j < template.services.length; j++) {
       var service = new service_Factor.Service(template.services[j].sType);
 
-      //loop through characteristics
+      // loop through characteristics
       for (var k = 0; k < template.services[j].characteristics.length; k++) {
           var characteristicTemplate = template.services[j].characteristics[k];
           var options = {
@@ -147,6 +148,7 @@ function publishAccessory(template, openHABSwitchWidget) {
           if (options.type === types.POWER_STATE_CTYPE) {
             updateCharacteristicsValue(url, characteristic);
           }
+
           service.addCharacteristic(characteristic);
       };
 
@@ -158,11 +160,14 @@ function publishAccessory(template, openHABSwitchWidget) {
 
 function updateCharacteristicsValue(url, characteristic) {
   var ws = new WebSocket(url.replace('http:', 'ws:') + '/state?type=json');
-  ws.on('open', function() {
+
+  ws.on('open', function () {
     console.log('open ws connection for switch characteristic.');
   });
-  ws.on('message', function(message) {
+
+  ws.on('message', function (message) {
     console.log('message: ' + message);
     characteristic.updateValue(message === 'ON' ? true : false);
   });
+
 };
