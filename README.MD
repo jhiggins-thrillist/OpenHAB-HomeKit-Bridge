@@ -12,13 +12,13 @@ The implementation is based on a fork of the original [HAP-NodeJS](https://githu
 * this repository
 
 ##### Install OpenHAB HomeKit Bridge:
-  ```zsh
+  ```sh
   sudo apt-get install libavahi-compat-libdnssd-dev
   npm install
   ```
 
 ##### Run OpenHAB HomeKit Bridge and connect to OpenHAB at 192.168.0.99 on port 8080:
-  ```zsh
+  ```sh
   npm start -- --server 192.1.0.99:8080
   ```
 
