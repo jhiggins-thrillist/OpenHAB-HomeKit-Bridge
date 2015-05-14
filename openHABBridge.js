@@ -26,7 +26,7 @@ storage.initSync();
 
 var bridgeController = new bridge_Factor.BridgedAccessoryController();
 var targetPort = 52826;
-var bridgeName = "HomeKit Bridge";
+var bridgeName = "OpenHAB Bridge for HomeKit"
 var pincode = ops['pincode'] ? ops['pincode'] :"031-45-154";
 var serverAddress = ops['server'] ? ops['server'] : "127.0.0.1:8080";
 var sitemapName = ops['sitemap'] ? ops['sitemap'] : "default";
