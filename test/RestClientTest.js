@@ -1,26 +1,28 @@
-var should = require('should');
-var nock = require('nock')
-var restClient = require('../lib/RestClient.js');
+import should from 'should';
+import nock from 'nock';
+import { RestClient } from '../lib/RestClient.js';
 
-describe('test RestClient', function () {
+process.env.NODE_ENV = 'test';
 
-  it('RestClient should fetch sitemap', function (done) {
+describe('RestClient', function () {
+
+  it('should fetch sitemap', function (done) {
     nock('http://openhab.test')
       .get('/rest/sitemaps/test.sitemap?type=json')
       .reply(200, '{}');
 
-    restClient.fetchSitemap('openhab.test', 'test.sitemap',
+    new RestClient().fetchSitemap('openhab.test', 'test.sitemap',
       function callback(result) {
         done();
       });
   })
 
-  it('RestClient should return proper object', function (done) {
+  it('should return proper object', function (done) {
     nock('http://openhab.test')
       .get('/rest/sitemaps/test.sitemap?type=json')
       .reply(200, '{ "homepage" : { "widget" : [] } }');
 
-    restClient.fetchSitemap('openhab.test', 'test.sitemap',
+    new RestClient().fetchSitemap('openhab.test', 'test.sitemap',
       function callback(result) {
         result.should.have.property('homepage');
         result.homepage.should.have.property('widget');

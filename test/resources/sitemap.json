@@ -30,7 +30,7 @@
         "item": {
           "type": "DimmerItem",
           "name": "Volume",
-          "state": "Uninitialized",
+          "state": "80",
           "link": "http://localhost:8080/rest/items/Volume"
         }
       },
@@ -48,6 +48,16 @@
           "name": "DemoSwitch",
           "state": "ON",
           "link": "http://localhost:8080/rest/items/DemoSwitch"
+        }
+      },
+      {
+        "widgetId": "demo_3",
+        "type": "Switch",
+        "label": "Button Switch",
+        "icon": "switch-on",
+        "mapping": {
+          "command": "ON",
+          "label": "On"
         }
       }
     ]

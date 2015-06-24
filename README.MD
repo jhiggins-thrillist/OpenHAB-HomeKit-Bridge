@@ -5,6 +5,8 @@ OpenHAB HomeKit Bridge
 OpenHAB HomeKit Bridge is a bridge implementation of the HomeKit Accessory Protocol.
 The implementation is based on a fork of the original [HAP-NodeJS](https://github.com/KhaosT/HAP-NodeJS) extended with npm package.json and a index.js for the object factories.
 
+Watch the [demo video here](https://youtu.be/QAbOHhjo05U).
+
 ##### Prerequisites
 * [OpenHAB](http://www.openhab.org) server running with at least one Switch item configured
 * node.js 0.12.x
@@ -12,14 +14,19 @@ The implementation is based on a fork of the original [HAP-NodeJS](https://githu
 * this repository
 
 ##### Install OpenHAB HomeKit Bridge:
-  ```sh
+On non OS X systems install the avahi library:
+  ```js
   sudo apt-get install libavahi-compat-libdnssd-dev
+  ```
+Install the node module dependencies:
+  ```js
   npm install
   ```
 
-##### Run OpenHAB HomeKit Bridge and connect to OpenHAB at 192.168.0.99 on port 8080:
-  ```sh
-  npm start -- --server 192.1.0.99:8080
+##### Run OpenHAB HomeKit Bridge
+This connects to OpenHAB at 192.168.0.99 on port 8080 and loads all items from a sitemap named 'demo.sitemap':
+  ```js
+  npm start -- --server 192.1.0.99:8080 --sitemap demo
   ```
 
 ##### Command line options:
@@ -38,8 +45,6 @@ At this point OpenHAB HomeKit Bridge will bridge [OpenHAB Switch items](https://
 To access the bridge from an iDevice use Apples [HomeKit Catalog](https://developer.apple.com/library/ios/samplecode/HomeKitCatalog/Introduction/Intro.html#//apple_ref/doc/uid/TP40015048) demo application or KhaosT´s [HomeKit Demo](https://github.com/KhaosT/HomeKit-Demo). Use the predefined pin code 031-45-154 to add the bridge as an accessory.
 
 ##### Backlog/ToDo
-* Change Switch items to Outlet or Switch Service
-* Add more robust websocket listener for state changes in OpenHAB
-* Implement Color item with LightBulb Service
-* Read items from (special) sitemap to adopt to meta information about items
-* Implement Rollershutter
+* Add more robust websocket listener for state changes in OpenHAB -> see [Issue 5](https://github.com/htreu/OpenHAB-HomeKit-Bridge/issues/5)
+* Implement Color item with LightBulb Service -> see [Issue 6](https://github.com/htreu/OpenHAB-HomeKit-Bridge/issues/6)
+* Implement Rollershutter -> see [Issue 7](https://github.com/htreu/OpenHAB-HomeKit-Bridge/issues/7)
